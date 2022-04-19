@@ -1,3 +1,8 @@
+// Jia Mei
+// Rocket Patrol Mod
+// April 18th, 2022
+// This project took approxmiately 6 hours each over the course of 2 days to complete
+
 let config = {
     type: Phaser.CANVAS,
     width: 640,
