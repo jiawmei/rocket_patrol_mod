@@ -8,6 +8,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        this.load.image('spaceship', './assets/newSpaceship.png');
     }
 
     create() {
@@ -15,8 +16,8 @@ class Menu extends Phaser.Scene {
         let menuConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            //backgroundColor: '#F3B141',
+            color: '#FFFFFF',
             align: 'right',
             padding: {
                 top: 5,
@@ -24,13 +25,19 @@ class Menu extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        
+        let titleConfig = {
+            fontFamily: 'Impact',
+            fontSize: '40px',
+            color: '#FFFFFF'
+        }
         // show menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
-        menuConfig.color = '#000';
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(320, 100, 'ROCKET PATROL', titleConfig).setOrigin(0.5);
+        this.add.text(320, 300, 'Use ←→ arrows to move & (F) to fire', menuConfig).setOrigin(0.5);
+        //menuConfig.backgroundColor = '#00FF00';
+        //menuConfig.color = '#000';
+        this.add.text(320, 360, 'Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5);
+        this.add.text(320, 420, 'SHOOT THE SHIPS ONLY', menuConfig).setOrigin(0.5);
+        this.titleShip = this.add.image(300, 200, 'spaceship').setOrigin(0, 0);
 
         // define keys
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -42,6 +49,7 @@ class Menu extends Phaser.Scene {
           // Novice mode
           game.settings = {
             spaceshipSpeed: 3,
+            //smallShipSpeed: 7,
             gameTimer: 60000    
           }
           this.sound.play('sfx_select');
@@ -51,7 +59,8 @@ class Menu extends Phaser.Scene {
           // Expert mode
           game.settings = {
             spaceshipSpeed: 4,
-            gameTimer: 45000    
+            //smallShipSpeed: 7,
+            gameTimer: 5000    
           }
           this.sound.play('sfx_select');
           this.scene.start("playScene");    
