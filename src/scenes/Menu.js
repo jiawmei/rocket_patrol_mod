@@ -9,6 +9,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
         this.load.image('spaceship', './assets/newSpaceship.png');
+        this.load.audio('music', './assets/music.mp3');
     }
 
     create() {
@@ -49,7 +50,7 @@ class Menu extends Phaser.Scene {
           // Novice mode
           game.settings = {
             spaceshipSpeed: 3,
-            //smallShipSpeed: 7,
+            smallShipSpeed: 7,
             gameTimer: 60000    
           }
           this.sound.play('sfx_select');
@@ -59,8 +60,8 @@ class Menu extends Phaser.Scene {
           // Expert mode
           game.settings = {
             spaceshipSpeed: 4,
-            //smallShipSpeed: 7,
-            gameTimer: 5000    
+            smallShipSpeed: 7,
+            gameTimer: 45000    
           }
           this.sound.play('sfx_select');
           this.scene.start("playScene");    

@@ -9,6 +9,7 @@ class Play extends Phaser.Scene {
         this.load.image('rocket', './assets/newRocket.png');
         this.load.image('spaceship', './assets/newSpaceship.png');
         this.load.image('starfield', './assets/newBackground.png');
+        this.load.image('newship', './assets/smallship.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/newExplosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 2});
     }
@@ -32,6 +33,7 @@ class Play extends Phaser.Scene {
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6, borderUISize*4, 'spaceship', 0, 30).setOrigin(0, 0);
         this.ship02 = new Spaceship(this, game.config.width + borderUISize*3, borderUISize*5 + borderPadding*2, 'spaceship', 0, 20).setOrigin(0,0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
+        //this.newShip = new NewShip(this, game.config.width, 400, 'newship', 0, 100).setOrigin(0,0);
         
 
         // define keys
@@ -76,6 +78,9 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← to Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+        //play music
+        // music obtained from https://pixabay.com/music/beats-into-the-night-20928/
+        this.sound.play('music');
     }
 
     update() {
@@ -95,19 +100,20 @@ class Play extends Phaser.Scene {
             this.ship01.update();               // update spaceship (x3)
             this.ship02.update();
             this.ship03.update();
+            //this.newShip.update();
         }
 
         // check collisions
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
-            this.p1Rocket.reset();
+            
             this.shipExplode(this.ship03);
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
-            this.p1Rocket.reset();
+            
             this.shipExplode(this.ship02);
         }
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
-            this.p1Rocket.reset();
+            
             this.shipExplode(this.ship01);
         }
     }
